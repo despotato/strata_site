@@ -112,6 +112,11 @@ main {
   max-width: 720px;
 }
 
+.hero .subline {
+  text-align: center;
+  margin-inline: auto;
+}
+
 .section--record .eyebrow,
 .section--record .subline {
   color: rgba(11, 13, 16, 0.6);
