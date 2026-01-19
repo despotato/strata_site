@@ -117,6 +117,15 @@ main {
   margin-inline: auto;
 }
 
+.hero__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  margin: 22px auto 0;
+  max-width: 820px;
+}
+
 .section--record .eyebrow,
 .section--record .subline {
   color: rgba(11, 13, 16, 0.6);
