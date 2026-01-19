@@ -97,10 +97,9 @@
   }
 
   const dialog = document.getElementById("waitlist-dialog");
-  const openButtons = [document.getElementById("waitlist-open-center")].filter(Boolean);
+  const openButtons = Array.from(document.querySelectorAll("[data-waitlist-open], #waitlist-open-center"));
   const closeButton = document.getElementById("waitlist-close");
   const cancelButton = document.getElementById("waitlist-cancel");
-  const supportsDialog = typeof HTMLDialogElement !== "undefined" && typeof dialog?.showModal === "function";
 
   const form = document.getElementById("waitlist");
   const status = document.getElementById("status");
@@ -112,51 +111,28 @@
     status.textContent = message;
   };
 
-  const fallbackOpen = () => {
+  const openDialog = () => {
+    setStatus("");
     dialog.setAttribute("open", "");
     dialog.classList.add("is-open");
     document.body.classList.add("waitlist-open");
-  };
-
-  const fallbackClose = () => {
-    dialog.classList.remove("is-open");
-    dialog.removeAttribute("open");
-    document.body.classList.remove("waitlist-open");
-  };
-
-  const openDialog = () => {
-    setStatus("");
-    if (supportsDialog) {
-      try {
-        dialog.showModal();
-      } catch (error) {
-        console.warn("showModal failed, using fallback", error);
-        fallbackOpen();
-      }
-    } else {
-      fallbackOpen();
-    }
     window.setTimeout(() => email.focus(), 0);
     hideCue();
   };
 
   const closeDialog = () => {
-    if (supportsDialog) {
-      try {
-        dialog.close();
-      } catch (error) {
-        fallbackClose();
-      }
-    } else {
-      fallbackClose();
-    }
+    dialog.classList.remove("is-open");
+    dialog.removeAttribute("open");
+    document.body.classList.remove("waitlist-open");
     window.setTimeout(scheduleCue, 600);
   };
 
-  openButtons.forEach((btn) => btn.addEventListener("click", (event) => {
-    event.preventDefault();
-    openDialog();
-  }));
+  openButtons.forEach((btn) =>
+    btn.addEventListener("click", (event) => {
+      event.preventDefault();
+      openDialog();
+    })
+  );
   closeButton?.addEventListener("click", closeDialog);
   cancelButton?.addEventListener("click", closeDialog);
 
