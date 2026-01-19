@@ -131,7 +131,7 @@
   form.addEventListener("submit", async (event) => {
     event.preventDefault();
     const value = String(email.value || "").trim();
-    if (!value || !/^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/.test(value)) {
+    if (!value || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
       setStatus("Enter a valid email.");
       email.focus();
       return;
