@@ -68,7 +68,7 @@
 
   // Gate the demo video: wait for user gesture, then play with sound.
   const recordVideo = document.querySelector(".record__video");
-  if (recordVideo) {
+  if (recordVideo instanceof HTMLVideoElement) {
     recordVideo.pause();
     recordVideo.muted = false;
     recordVideo.removeAttribute("muted");
@@ -100,6 +100,7 @@
   const openButtons = [document.getElementById("waitlist-open-center")].filter(Boolean);
   const closeButton = document.getElementById("waitlist-close");
   const cancelButton = document.getElementById("waitlist-cancel");
+  const supportsDialog = typeof HTMLDialogElement !== "undefined" && typeof dialog?.showModal === "function";
 
   const form = document.getElementById("waitlist");
   const status = document.getElementById("status");
@@ -113,15 +114,25 @@
 
   const openDialog = () => {
     setStatus("");
-    if (typeof dialog.showModal === "function") dialog.showModal();
-    else dialog.setAttribute("open", "");
+    if (supportsDialog) {
+      dialog.showModal();
+    } else {
+      dialog.setAttribute("open", "");
+      dialog.classList.add("is-open");
+      document.body.classList.add("waitlist-open");
+    }
     window.setTimeout(() => email.focus(), 0);
     hideCue();
   };
 
   const closeDialog = () => {
-    if (typeof dialog.close === "function") dialog.close();
-    else dialog.removeAttribute("open");
+    if (supportsDialog) {
+      dialog.close();
+    } else {
+      dialog.classList.remove("is-open");
+      dialog.removeAttribute("open");
+      document.body.classList.remove("waitlist-open");
+    }
     window.setTimeout(scheduleCue, 600);
   };
 

@@ -623,6 +623,27 @@ input[type="email"]:focus-visible {
   border-radius: 22px;
   background: transparent;
   overflow: visible;
+  display: none;
+  position: fixed;
+  inset: 0;
+  margin: auto;
+  place-items: center;
+  z-index: 30;
+}
+
+.waitlist-dialog[open],
+.waitlist-dialog.is-open {
+  display: grid;
+}
+
+.waitlist-dialog.is-open::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.62);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 0;
 }
 
 .waitlist-dialog::backdrop {
@@ -640,6 +661,8 @@ input[type="email"]:focus-visible {
   color: #0b0d10;
   transform: translateY(10px) scale(0.985);
   transition: transform 260ms var(--ease);
+  position: relative;
+  z-index: 1;
 }
 
 dialog[open] .waitlist-panel {
@@ -672,6 +695,10 @@ dialog[open] .waitlist-panel {
   gap: 10px;
   margin-top: 12px;
   flex-wrap: wrap;
+}
+
+body.waitlist-open {
+  overflow: hidden;
 }
 
 .waitlist-panel__row {
