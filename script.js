@@ -112,14 +112,29 @@
     status.textContent = message;
   };
 
+  const fallbackOpen = () => {
+    dialog.setAttribute("open", "");
+    dialog.classList.add("is-open");
+    document.body.classList.add("waitlist-open");
+  };
+
+  const fallbackClose = () => {
+    dialog.classList.remove("is-open");
+    dialog.removeAttribute("open");
+    document.body.classList.remove("waitlist-open");
+  };
+
   const openDialog = () => {
     setStatus("");
     if (supportsDialog) {
-      dialog.showModal();
+      try {
+        dialog.showModal();
+      } catch (error) {
+        console.warn("showModal failed, using fallback", error);
+        fallbackOpen();
+      }
     } else {
-      dialog.setAttribute("open", "");
-      dialog.classList.add("is-open");
-      document.body.classList.add("waitlist-open");
+      fallbackOpen();
     }
     window.setTimeout(() => email.focus(), 0);
     hideCue();
@@ -127,16 +142,21 @@
 
   const closeDialog = () => {
     if (supportsDialog) {
-      dialog.close();
+      try {
+        dialog.close();
+      } catch (error) {
+        fallbackClose();
+      }
     } else {
-      dialog.classList.remove("is-open");
-      dialog.removeAttribute("open");
-      document.body.classList.remove("waitlist-open");
+      fallbackClose();
     }
     window.setTimeout(scheduleCue, 600);
   };
 
-  openButtons.forEach((btn) => btn.addEventListener("click", openDialog));
+  openButtons.forEach((btn) => btn.addEventListener("click", (event) => {
+    event.preventDefault();
+    openDialog();
+  }));
   closeButton?.addEventListener("click", closeDialog);
   cancelButton?.addEventListener("click", closeDialog);
 
