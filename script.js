@@ -128,7 +128,7 @@
     closeDialog();
   });
 
-  form.addEventListener("submit", (event) => {
+  form.addEventListener("submit", async (event) => {
     event.preventDefault();
     const value = String(email.value || "").trim();
     if (!value || !/^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/.test(value)) {
@@ -139,12 +139,37 @@
 
     const submit = document.getElementById("waitlist-submit") || form.querySelector('button[type="submit"]');
     submit?.setAttribute("disabled", "true");
-    setStatus("Thanks. You’re on the list.");
+    setStatus("Submitting...");
 
-    window.setTimeout(() => {
+    const endpoint = form.getAttribute("data-endpoint") || "";
+    if (!endpoint) {
+      setStatus("No waitlist endpoint set.");
       submit?.removeAttribute("disabled");
-      form.reset();
-      closeDialog();
-    }, 950);
+      return;
+    }
+
+    try {
+      const response = await fetch(endpoint, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json"
+        },
+        body: JSON.stringify({ email: value, source: "strata-site" })
+      });
+
+      if (!response.ok) throw new Error(`Request failed: ${response.status}`);
+
+      setStatus("Thanks. You’re on the list.");
+      window.setTimeout(() => {
+        submit?.removeAttribute("disabled");
+        form.reset();
+        closeDialog();
+      }, 850);
+    } catch (error) {
+      setStatus("Something went wrong. Try again?");
+      submit?.removeAttribute("disabled");
+      console.error(error);
+    }
   });
 })();
