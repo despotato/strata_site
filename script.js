@@ -1,4 +1,10 @@
 (() => {
+  // Always start at the top, even after reload/back.
+  if ("scrollRestoration" in window.history) {
+    window.history.scrollRestoration = "manual";
+  }
+  window.scrollTo(0, 0);
+
   const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   const revealEls = Array.from(document.querySelectorAll(".reveal"));
