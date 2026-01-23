@@ -420,6 +420,17 @@
         ) {
           setTimeout(() => {
             showState(successState);
+
+            // Redirect to app if tokens exist
+            if (params.has("access_token")) {
+              const accessToken = params.get("access_token");
+              const refreshToken = params.get("refresh_token");
+              const deepLink = `strata://auth/callback#access_token=${accessToken}&refresh_token=${refreshToken}`;
+
+              setTimeout(() => {
+                window.location.href = deepLink;
+              }, 800);
+            }
           }, 1200);
         } else {
           setTimeout(() => {
