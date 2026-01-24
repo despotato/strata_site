@@ -17,7 +17,7 @@
           <div class="hero__text">
             <p class="eyebrow reveal">Strata</p>
             <h1 class="headline reveal">Strata Release</h1>
-            <p class="subline reveal">Early access build. macOS build is not notarized yet.</p>
+            <p class="subline reveal">Download installers from GitHub Releases.</p>
 
             <dl class="release__meta reveal" aria-label="Release metadata">
               <div class="release__meta-item">
@@ -31,12 +31,19 @@
             </dl>
 
             <div class="release__downloads reveal" role="group" aria-label="Downloads">
-              <a class="btn btn--primary release__btn" id="download-mac" href="#">Download for macOS</a>
-              <a class="btn btn--secondary release__btn" id="download-win" href="#">Download for Windows</a>
+              <div class="release-card">
+                <div class="release-card__title">macOS</div>
+                <a class="btn btn--primary release__btn" id="download-mac" href="#">Download for macOS</a>
+              </div>
+              <div class="release-card">
+                <div class="release-card__title">Windows</div>
+                <a class="btn btn--secondary release__btn" id="download-win" href="#">Download for Windows</a>
+              </div>
             </div>
 
             <p class="release__footer reveal">
               <a class="release__link" id="release-page" href="#">View release notes on GitHub</a>
+              <span class="release__disclaimer">Early access build. macOS build is not notarized yet.</span>
             </p>
           </div>
         </div>
@@ -48,23 +55,22 @@
             <p class="eyebrow eyebrow--soft">macOS</p>
             <h2 class="headline headline--small">Install on macOS</h2>
             <ol class="release-steps">
-              <li>Download the DMG, open it, drag Strata to Applications.</li>
+              <li>Download the DMG and open it.</li>
+              <li>Drag Strata to Applications.</li>
               <li>Open Strata from Applications.</li>
-              <li>If blocked: System Settings → Privacy &amp; Security → “Open Anyway”.</li>
-              <li>
-                If still blocked (Terminal):
-                <span class="release-code" aria-label="Terminal command">Strata.app"</span>
-              </li>
+              <li>If macOS blocks it: System Settings → Privacy &amp; Security → “Open Anyway”.</li>
+              <li>If it’s still blocked, run this in Terminal:</li>
             </ol>
+            <pre class="release-codeblock"><code>sudo xattr -r -d com.apple.quarantine "/Applications/Strata.app"</code></pre>
           </div>
 
           <div class="release-instructions__col float-up">
             <p class="eyebrow eyebrow--soft">Windows</p>
             <h2 class="headline headline--small">Install on Windows</h2>
             <ol class="release-steps">
-              <li>Download the installer .exe</li>
-              <li>Run it</li>
-              <li>If SmartScreen appears: “More info” → “Run anyway”</li>
+              <li>Download the installer (.exe).</li>
+              <li>Run it.</li>
+              <li>If SmartScreen appears: “More info” → “Run anyway”.</li>
             </ol>
           </div>
         </div>
@@ -83,4 +89,3 @@
     <script src="./release.js" type="module"></script>
   </body>
 </html>
-
