@@ -1004,32 +1004,54 @@ body.waitlist-open {
 
 .release-instructions {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: clamp(22px, 4vw, 54px);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(18px, 3vw, 44px);
   align-items: start;
 }
 
-.release-instructions__intro {
-  grid-column: 1 / -1;
+/* Install section should read like content, not a full-height hero */
+.section.section--install {
+  min-height: auto;
+  place-items: start;
+  padding-top: clamp(40px, 6vw, 72px);
+  padding-bottom: clamp(44px, 7vw, 84px);
 }
 
-.release-instructions__note {
+.release-instructions__col .headline {
   margin-top: 10px;
-  max-width: 68ch;
 }
 
-.release-inlinecode {
-  display: inline-flex;
-  align-items: center;
-  font-family: var(--mono);
+.release-instructions__footnote {
+  grid-column: 1 / -1;
+  margin-top: clamp(10px, 2vw, 22px);
+  padding-top: 14px;
+  border-top: 1px solid rgba(11, 13, 16, 0.1);
+}
+
+.release-instructions__footnote .eyebrow {
+  margin-bottom: 8px;
+}
+
+.release-footnote {
+  margin: 0;
+  max-width: 72ch;
   font-size: 13px;
-  padding: 2px 9px;
-  border-radius: 999px;
-  background: rgba(11, 13, 16, 0.08);
-  border: 1px solid rgba(11, 13, 16, 0.12);
-  color: rgba(11, 13, 16, 0.92);
-  transform: translateY(-1px);
-  white-space: nowrap;
+  line-height: 1.55;
+  color: rgba(11, 13, 16, 0.62);
+}
+
+/* Slightly tighter + smaller steps so the headings don't feel comically huge */
+.release-steps {
+  margin: 14px 0 0 0;
+  padding-left: 1.15em;
+  max-width: 54ch;
+  font-size: 15px;
+  line-height: 1.6;
+  color: rgba(11, 13, 16, 0.72);
+}
+
+.release-steps li {
+  margin: 9px 0;
 }
 
 @media (max-width: 760px) {
