@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="dark" />
+    <meta name="theme-color" content="#07080a" />
+    <title>Strata Release</title>
+    <meta name="description" content="Download the latest Strata installers from GitHub Releases." />
+    <link rel="icon" type="image/png" href="../logo_transparent copy.png" />
+    <link rel="stylesheet" href="../styles.css" />
+  </head>
+  <body>
+    <main>
+      <section class="section section--hero" aria-label="Release">
+        <div class="wrap hero release">
+          <div class="hero__text">
+            <p class="eyebrow reveal">Strata</p>
+            <h1 class="headline reveal">Strata Release</h1>
+            <p class="subline reveal">Early access build. macOS build is not notarized yet.</p>
+
+            <dl class="release__meta reveal" aria-label="Release metadata">
+              <div class="release__meta-item">
+                <dt>Version</dt>
+                <dd id="release-version">—</dd>
+              </div>
+              <div class="release__meta-item">
+                <dt>Released</dt>
+                <dd><time id="release-date" datetime="">—</time></dd>
+              </div>
+            </dl>
+
+            <div class="release__downloads reveal" role="group" aria-label="Downloads">
+              <a class="btn btn--primary release__btn" id="download-mac" href="#">Download for macOS</a>
+              <a class="btn btn--secondary release__btn" id="download-win" href="#">Download for Windows</a>
+            </div>
+
+            <p class="release__footer reveal">
+              <a class="release__link" id="release-page" href="#">View release notes on GitHub</a>
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section--record" aria-label="Install instructions">
+        <div class="wrap release-instructions">
+          <div class="release-instructions__col float-up">
+            <p class="eyebrow eyebrow--soft">macOS</p>
+            <h2 class="headline headline--small">Install on macOS</h2>
+            <ol class="release-steps">
+              <li>Download the DMG, open it, drag Strata to Applications.</li>
+              <li>Open Strata from Applications.</li>
+              <li>If blocked: System Settings → Privacy &amp; Security → “Open Anyway”.</li>
+              <li>
+                If still blocked (Terminal):
+                <span class="release-code" aria-label="Terminal command">Strata.app"</span>
+              </li>
+            </ol>
+          </div>
+
+          <div class="release-instructions__col float-up">
+            <p class="eyebrow eyebrow--soft">Windows</p>
+            <h2 class="headline headline--small">Install on Windows</h2>
+            <ol class="release-steps">
+              <li>Download the installer .exe</li>
+              <li>Run it</li>
+              <li>If SmartScreen appears: “More info” → “Run anyway”</li>
+            </ol>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <div class="scroll-cue" id="scroll-cue" aria-hidden="true">
+      <div class="scroll-cue__pill">
+        <span class="scroll-cue__dot"></span>
+        <span class="scroll-cue__line"></span>
+      </div>
+      <span class="scroll-cue__text">scroll</span>
+    </div>
+
+    <script src="../script.js" defer></script>
+    <script src="./release.js" type="module"></script>
+  </body>
+</html>
+

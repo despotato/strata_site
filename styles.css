@@ -887,3 +887,129 @@ body.waitlist-open {
     transform: translateY(0);
   }
 }
+
+/* Release page */
+.release__meta {
+  margin: 18px 0 0 0;
+  display: flex;
+  gap: 18px;
+  justify-content: center;
+  flex-wrap: wrap;
+  color: var(--muted);
+}
+
+.release__meta-item {
+  display: grid;
+  gap: 4px;
+  padding: 10px 14px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  min-width: 150px;
+}
+
+.release__meta dt {
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.release__meta dd {
+  margin: 0;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.92);
+}
+
+.release__downloads {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 22px;
+}
+
+.release__btn {
+  min-width: 240px;
+}
+
+.release__btn.is-recommended {
+  border-color: rgba(255, 255, 255, 0.5);
+  box-shadow:
+    0 14px 44px rgba(0, 0, 0, 0.34),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.12);
+  position: relative;
+}
+
+.release__btn.is-recommended::after {
+  content: "Recommended";
+  position: absolute;
+  top: -12px;
+  right: 14px;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.55);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.release__footer {
+  margin: 18px 0 0 0;
+}
+
+.release__link {
+  color: rgba(255, 255, 255, 0.86);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  text-decoration-color: rgba(255, 255, 255, 0.35);
+}
+
+.release__link:focus-visible {
+  outline: 2px solid rgba(255, 255, 255, 0.35);
+  outline-offset: 4px;
+  border-radius: 10px;
+}
+
+.release-instructions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(22px, 4vw, 54px);
+  align-items: start;
+}
+
+@media (max-width: 900px) {
+  .release-instructions {
+    grid-template-columns: 1fr;
+  }
+}
+
+.release-steps {
+  margin: 18px 0 0 0;
+  padding-left: 1.15em;
+  max-width: 54ch;
+  font-size: 16px;
+  line-height: 1.55;
+  color: rgba(11, 13, 16, 0.72);
+}
+
+.release-steps li {
+  margin: 10px 0;
+}
+
+.release-code {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--mono);
+  font-size: 13px;
+  padding: 3px 10px;
+  border-radius: 999px;
+  background: rgba(11, 13, 16, 0.08);
+  border: 1px solid rgba(11, 13, 16, 0.12);
+  color: rgba(11, 13, 16, 0.92);
+  margin-left: 8px;
+  white-space: nowrap;
+}
