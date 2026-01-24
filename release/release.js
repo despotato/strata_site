@@ -28,8 +28,25 @@ const applyRecommended = () => {
   const mac = byId("download-mac");
   const win = byId("download-win");
 
-  if (mac) mac.classList.toggle("is-recommended", isMac && !isWindows);
-  if (win) win.classList.toggle("is-recommended", isWindows && !isMac);
+  const preferMac = isMac && !isWindows;
+  const preferWin = isWindows && !isMac;
+
+  if (mac) mac.classList.toggle("is-recommended", preferMac);
+  if (win) win.classList.toggle("is-recommended", preferWin);
+
+  if (mac && win) {
+    if (preferWin) {
+      win.classList.add("btn--primary");
+      win.classList.remove("btn--secondary");
+      mac.classList.add("btn--secondary");
+      mac.classList.remove("btn--primary");
+    } else if (preferMac) {
+      mac.classList.add("btn--primary");
+      mac.classList.remove("btn--secondary");
+      win.classList.add("btn--secondary");
+      win.classList.remove("btn--primary");
+    }
+  }
 };
 
 setText("release-version", STRATA_RELEASE.version);
@@ -45,4 +62,3 @@ setHref("download-win", STRATA_RELEASE.windows.exeUrl);
 setHref("release-page", STRATA_RELEASE.pageUrl);
 
 applyRecommended();
-
