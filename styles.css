@@ -1009,6 +1009,29 @@ body.waitlist-open {
   align-items: start;
 }
 
+.release-instructions__intro {
+  grid-column: 1 / -1;
+}
+
+.release-instructions__note {
+  margin-top: 10px;
+  max-width: 68ch;
+}
+
+.release-inlinecode {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--mono);
+  font-size: 13px;
+  padding: 2px 9px;
+  border-radius: 999px;
+  background: rgba(11, 13, 16, 0.08);
+  border: 1px solid rgba(11, 13, 16, 0.12);
+  color: rgba(11, 13, 16, 0.92);
+  transform: translateY(-1px);
+  white-space: nowrap;
+}
+
 @media (max-width: 760px) {
   .release-instructions {
     grid-template-columns: 1fr;
