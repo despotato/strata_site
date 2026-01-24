@@ -1,5 +1,5 @@
 export const STRATA_RELEASE = {
-  pageUrl: "https://github.com/despotato/strata_releases/releases/tag/v1.2.0",
+  pageUrl: "https://github.com/despotato/strata_releases",
   mac: {
     dmgUrl: "https://github.com/despotato/strata_releases/releases/download/v1.2.0/Strata-1.2.0-arm64.dmg",
     zipUrl: ""
