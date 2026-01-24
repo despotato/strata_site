@@ -31,21 +31,25 @@ const applyRecommended = () => {
   const preferMac = isMac && !isWindows;
   const preferWin = isWindows && !isMac;
 
-  if (mac) mac.classList.toggle("is-recommended", preferMac);
-  if (win) win.classList.toggle("is-recommended", preferWin);
+  // Helper: enforce exactly one variant class
+  const setVariant = (el, variant) => {
+    if (!el) return;
+    el.classList.remove("btn--primary", "btn--secondary");
+    el.classList.add(variant);
+  };
 
-  if (mac && win) {
-    if (preferWin) {
-      win.classList.add("btn--primary");
-      win.classList.remove("btn--secondary");
-      mac.classList.add("btn--secondary");
-      mac.classList.remove("btn--primary");
-    } else if (preferMac) {
-      mac.classList.add("btn--primary");
-      mac.classList.remove("btn--secondary");
-      win.classList.add("btn--secondary");
-      win.classList.remove("btn--primary");
-    }
+  // Default: macOS is primary (white), Windows is secondary (gray)
+  setVariant(mac, "btn--primary");
+  setVariant(win, "btn--secondary");
+
+  // If we can confidently detect Windows, flip the recommendation
+  if (preferWin) {
+    setVariant(win, "btn--primary");
+    setVariant(mac, "btn--secondary");
+  } else if (preferMac) {
+    // keep default
+    setVariant(mac, "btn--primary");
+    setVariant(win, "btn--secondary");
   }
 };
 
